@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { connectDB } from './config/db.js';
 import { env } from './config/env.js';
 const app = express();
 const PORT = env.PORT;
@@ -13,4 +14,5 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+    connectDB();
 });
