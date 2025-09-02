@@ -5,10 +5,11 @@ import { env } from './config/env.js';
 import { clerkMiddleware } from '@clerk/express'//
 import {inngest,functions} from './config/inngest.js'//
 import {serve} from 'inngest/express'//
+import chatRoutes from './routes/chat.route.js';//
 
 const app = express();
 app.use(cors());
-app.use(clerkMiddleware());//--
+app.use(clerkMiddleware());//--req.auth is populated by this middleware
 app.use(express.json());
 
 const PORT = env.PORT;
@@ -18,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.use("api/inngest",serve({client: inngest, functions}));//--
-
+app.use("api/chat",chatRoutes);
 
 const startServer = async () => {
     try {
