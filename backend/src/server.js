@@ -13,6 +13,8 @@ app.use(clerkMiddleware());//--req.auth is populated by this middleware
 app.use(express.json());
 
 const PORT = env.PORT;
+//to ignore favicon requests in logs
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.get('/', (req, res) => {
     res.send('welcome to talkspace backend !!');
