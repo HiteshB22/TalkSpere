@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
     res.send('welcome to talkspace backend !!');
 });
 
-app.use("api/inngest",serve({client: inngest, functions}));//--
-app.use("api/chat",chatRoutes);
+app.use("/api/inngest",serve({client: inngest, functions}));//--
+app.use("/api/chat",chatRoutes);
 
 const startServer = async () => {
     try {
