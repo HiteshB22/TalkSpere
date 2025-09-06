@@ -19,14 +19,14 @@ const syncUser = inngest.createFunction(
             name: `${first_name || ""} ${last_name|| ""}`.trim(),
             image: image_url,
         };
-        await User.create(newUseer);
+        await User.create(newUser);
         //to do more things
         await upsertSreamUser({id: newUser.clerkId, name: newUser.name, email: newUser.email, image: newUser.image});
     }
 );
 
 const delteUserFromDB = inngest.createFunction(
-    {id:"delete-user-from-db"},
+    {id:"delete-user-from-db"},//any name
     {event:"clerk/user.deleted"},
     async ({ event })=> {
         await connectDB();

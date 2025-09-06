@@ -13,7 +13,7 @@ app.use(clerkMiddleware());//--req.auth is populated by this middleware
 app.use(express.json());
 
 const PORT = env.PORT;
-//to ignore favicon requests in logs
+//to ignore favicon requests in logs vercel
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.get('/', (req, res) => {
