@@ -1,7 +1,7 @@
 import { generateStreamToken } from "../config/stream.js";
 export const getStreamToken = (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = req.auth().userId;
         if (!userId) {
             return res.status(401).json({ error: 'Unauthorized' });
         }

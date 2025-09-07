@@ -1,20 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
-
+import { Routes, Route, Navigate } from 'react-router';
+import HomePage from './pages/HomePage';
+import AuthPage from './pages/AuthPage';
 function App() {
 
   return (
     <>
-      <header>
-      <SignedOut>
-        <SignInButton mode='modal'/>
-      </SignedOut>
       <SignedIn>
-        <UserButton />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/auth' element={<Navigate to={"/"} replace/>} />
+        </Routes>
       </SignedIn>
-    </header>
+
+      <SignedOut>
+        <Routes>
+          <Route path='/auth' element={<AuthPage />} />
+          <Route path='*' element={<Navigate to={"/auth"} replace/>} />
+        </Routes>
+      </SignedOut>
     </>
   )
 }
